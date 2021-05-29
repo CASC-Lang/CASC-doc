@@ -42,7 +42,7 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 
 To get start with any languages, hello world is the best demonstration to show a language's features. The following code is CASC's basic Hello World application:
 
-```casc
+```v
 class CASC {
     comp fn main(args: str[]) {
         println("Hello World!")
@@ -74,7 +74,7 @@ For CASC 0.1, we have `print` and `println` built-in functions, you can directly
 
 Similar to Kotlin's (or V Lang) function, you declares a function like below:
 
-```casc
+```v
 fn add(a: i32, b: i32): i32 {
     return a + b
 }
@@ -82,7 +82,7 @@ fn add(a: i32, b: i32): i32 {
 
 To declare it as a companion function (same as static function in Java), you will need to put `comp` keyword before `fn` keyword:
 
-```casc
+```v
 comp fn add(a: i32, b: i32): i32 {
     return a + b
 }
@@ -90,7 +90,7 @@ comp fn add(a: i32, b: i32): i32 {
 
 In addition, if you have type to return, you can optionally discard `return` keyword:
 
-```casc
+```v
 fn add(a: i32, b: i32): i32 {
     a + b // OK
 }
@@ -98,7 +98,7 @@ fn add(a: i32, b: i32): i32 {
 
 To declare a void function, you can simply change return type to `unit` or just don't add return type after a function declaration:
 
-```casc
+```v
 fn sayHi(): unit {
     println("Hi")
 }
@@ -129,19 +129,19 @@ In default, every classes, fields, and functions without access modifiers are pu
 
 All variables in default are declared as immutable variable:
 
-```casc
+```v
 a := 1
 ```
 
 To declare mutable variables, add `mut` keyword at the beginning of the variable declaration:
 
-```casc
+```v
 mut b := 1
 ```
 
 At this moment, we don't support variable declaration, to declare a i64 and f64 (since integer values are i32 and float values are f32 in default,) you can add `L` (or `l`) after integer values and `D` (or `d`) after float values:
 
-```casc
+```v
 c := 1L
 
 d := 1.0D
@@ -155,20 +155,323 @@ As previous mentioned, CASC does not have type declaration, so types are automat
 
 You can only assign objects to mutable variables or fields:
 
-```casc
+```v
 mut a := 1
 a = 2 // OK
 ```
 
-```casc
+```v
 b := 1
 b = 2 // Error
 ```
 
 Interesting aspect, you can reassign a variable (except for field) with another type as long as it is mutable:
 
-```casc
+```v
 mut c := 1
 c = java::lang::Integer(2) // Ok, now variable c's type is java::lang::Integer
+```
+
+## Array
+
+Array in CASC is same as Java's, you can create an array by either initializing or allocating:
+
+```v
+a := i32:[10] // Allocate an i32 array holds up to 10 i32 values.
+b := { 1 } // Dynamically initialize an i32 array holds up 1 i32 value, and assign 1 to its index 0
+```
+
+To declare a multidimensional array, you would like to do like below:
+
+```v
+c := i32:[10][10]
+d := { { 1, 2 }, i32:[10] }
+```
+
+you can simply reference a value in an array by indexing array:
+
+```v
+e := c[2] // i32[]
+f := c[3][0] // i32
+g := (i32:[10])[0] // i32, though it's meaningless consider it is a constant value before assign with anotehr value.
+```
+
+## List
+
+> In CASC 0.1, not implemented a DSL for initializing array.
+
+## Module
+
+CASC has same functionality as Java's package system calls module system, though it does not have significant differences. To organize files with module system, you would add `mod` keyword and come up with a qualified module path at the beginning of CASC source file than any other things:
+
+```rs
+mod website::template
+
+class Slide {
+    // ...
+}
+```
+
+## Module Import
+
+We do have same functionality  as Java's import, but in CASC, we import modules with `use` keyword:
+
+```rust
+use java::lang::Integer
+
+class Math {
+    fn add(a: Integer, b: Integer): i32 {
+        a.intValue() + b.intValue()
+    }
+}
+```
+
+> In CASC 0.1, we haven't implemented wildcard import.
+
+> In future CASC versions, we will as well provides inner-function module import functionality.
+
+## Statements
+### If Else
+
+```v
+if a > b {
+    // ...
+} else if a == b {
+    // ...
+} else {
+    // ...
+}
+```
+
+You can add parentheses before and after the expression as well, just for readability enhancement for group of users.
+
+### For Loop
+#### Detailed For Loop
+
+This for loop is same as Java's original loop:
+
+```rs
+for mut i := 1; i < 20; i = i + 1 {
+    // ...
+}
+```
+
+> In CASC 0.1, we still don't have increment statement.
+
+If you want to declare a infinite for loop, you can either do:
+
+```rs
+for ;; {
+    // ...
+}
+```
+
+Or just discard semicolons:
+
+```rs
+for {
+
+}
+```
+
+#### Ranged For Loop
+
+CASC does provide a concise way to declare a for loop inside a range.
+
+```v
+for i : 1 -> 10 {
+    println(i)
+}
+```
+
+It will print out:
+
+```json
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
+
+We call the for loop above as `to-forward for loop`.
+
+If you don't want for loop iterate to 10, you would want to replace `->` to `|>`:
+
+```v
+for i : 1 |> 10 {
+    println(i)
+}
+```
+
+It will print out:
+
+```json
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+We call the for loop above as `until-forward for loop`.
+
+To reverse it, you need to put large number on the other side and vice versa. In addition, replace `->` with `<-`, or `|>` with `<|`.
+
+```v
+for i : 1 <- 10 {
+    println(i)
+}
+```
+
+```v
+for i : 1 <| 10 {
+    println(i)
+}
+```
+
+It's worth noting that forward for loop takes the left side expression to increase, and reverse for loop takes the right side expression to decrease.
+
+> In future CASC versions, we will provide step functionality if you want to increase or decrease number with specified number.
+
+## Class
+
+```kt
+class Person {
+
+}
+```
+
+Class itself can be applied with access modifiers:
+
+```kt
+priv class Person {
+
+}
+```
+
+### Class with Default Constructor
+
+The class in the following code will generate a constructor without parameters.
+
+```kt
+class Person {
+    // ...
+}
+```
+
+### Class with Primary Constructor
+
+All classes should have a primary constructor than having secondary constructors only, also, constructor parameters may place `param` keyword before a parameter:
+
+```kt
+class Person(param age: i32, param name: str) {
+    ctor() {
+        self(18, "ChAoS")
+    }
+}
+```
+
+The above example will emit two-parameters constructor, if your constructor want to store parameters as class fields, you would like to declare it as below:
+
+```kt
+class Person(priv mut age: i32, name: str, param parents: Person[]) {
+
+} 
+```
+
+The above example will emit three-parameters constructor, and will store `age` and `name` as class fields.
+
+### Class with both Primary & Secondary Constructor
+
+Secondary (or auxiliary) constructor should call either primary constructor or a secondary constructor that also calls primary constructor as well, which means in CASC we don't support constructor overloading. To declare a secondary constructor, put `ctor` keyword before a set of arguments:
+
+> The following example will replace in future CASC versions.
+
+```kt
+class Person {
+    ctor(age: i32, name: str) { // Error, no primary constructor 
+        
+    }
+}
+```
+
+Need to mention is that you cannot have field parameter in secondary constructors.
+
+Constructor can as well apply access modifiers before it:
+
+```kt
+class Person priv (priv mut age: i32, name: str) {
+    prot ctor() {
+        super(18, "ChAoS")
+    }
+}
+```
+
+### Field
+
+```kt
+class Person {
+    priv mut age: i32
+    name: str
+}
+```
+
+### Field declaration block
+
+If you have multiple fields with same access modifiers and mutability, you can declare them in a single field declaration block:
+
+```kt
+class Person {
+    name: str
+    priv mut:
+        age: i32
+        // other fields...
+}
+```
+
+Due to compiler's limitation, the field declaration block does not recognize the indent, so consider the code:
+
+```kt
+class Person {
+    priv mut:
+        age: i32
+    name: str
+}
+```
+
+Both field `age` and `name` are private and mutable.
+
+#### Companion field
+
+```kt
+class Person {
+    comp:
+        genericName: str
+}
+```
+
+> In CASC 0.1, we haven't implement field assignment.
+
+### Variable property access
+
+```v
+a := { 1 }
+a[0] = 1
+```
+
+If it's a object and it has a property calls `b`, you can access it like below:
+
+```v
+obj.b = 10
 ```
 
