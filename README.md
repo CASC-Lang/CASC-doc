@@ -23,8 +23,8 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 
 ## Table Of Contents
 
-<table>
-    <tr><td display=block box-sizing=border-box clear=both valign=top>
+<table width=100%>
+    <tr><td width=100% valign=top>
 
 * [Hello World](#hello-world)
 * [Types](#types)
@@ -37,7 +37,7 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 * [Module](#module)
 * [Module Import](#module-import)
     
-    </td><td display=block box-sizing=border-box clear=both valign=top>
+    </td><td width=100% valign=top>
 
 * [Statements](#statements)
     * [If Else](#if-else)
