@@ -23,7 +23,7 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 
 ## Table Of Contents
 
-<table table-layout=fixed>
+<table table-layout=fixed width=100%>
     <tr><td valign=top>
 
 * [Hello World](#hello-world)
