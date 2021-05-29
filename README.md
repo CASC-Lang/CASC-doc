@@ -298,7 +298,7 @@ for {
 
 #### Ranged For Loop
 
-CASC does provide a concise way to declare a for loop inside a range.
+CASC does provide a concise way to declare a for loop iterating inside a range.
 
 ```v
 for i : 1 -> 10 {
