@@ -37,7 +37,7 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 * [Module](#module)
 * [Module Import](#module-import)
     
-    </td><td width=50% valign=top>
+    </td><td valign=top>
 
 * [Statements](#statements)
     * [If Else](#if-else)
