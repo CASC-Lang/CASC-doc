@@ -272,7 +272,7 @@ You can add parentheses before and after the expression as well, just for readab
 
 This for loop is same as Java's original loop:
 
-```rs
+```v
 for mut i := 1; i < 20; i = i + 1 {
     // ...
 }
@@ -282,7 +282,7 @@ for mut i := 1; i < 20; i = i + 1 {
 
 If you want to declare a infinite for loop, you can either do:
 
-```rs
+```v
 for ;; {
     // ...
 }
@@ -290,7 +290,7 @@ for ;; {
 
 Or just discard semicolons:
 
-```rs
+```v
 for {
 
 }
