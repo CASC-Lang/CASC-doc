@@ -24,7 +24,7 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 ## Table Of Contents
 
 <table>
-    <tr><td width=33% valign=top>
+    <tr><td width=50% valign=top>
 
 * [Hello World](#hello-world)
 * [Types](#types)
@@ -32,7 +32,27 @@ If the last argument is a CASC source file, then it'll only queue the only file 
 * [Access Modifiers](#access-modifiers)
 * [Variable Declaration](#variable-declaration)
 * [Assignment](#assignment)
+* [Array](#array)
+* [List](#list)
+* [Module](#module)
+* [Module Import](#module-import)
     
+    </td><td width=50% valign=top>
+
+* [Statements](#statements)
+    * [If Else](#if-else)
+    * [For Loop](#for-loop)
+        * [Detailed For Loop](#detailed-for-loop)
+        * [Ranged For Loop](#ranged-for-loop)
+* [Class](#class)
+    * [Class with Default Constructor](#class-with-default-constructor)
+    * [Class with Primary Constructor](#class-with-primary-constructor)
+    * [Class with both Primary & Secondary Constructor](#class-with-both-primary--secondary-constructor)
+* [Field](#field)
+    * [Field declaration block](#field-declaration-block)
+    * [Companion field](#companion-field)
+* [Variable property access](#variable-property-access)
+
     </td></tr>
 </table>
 
@@ -417,7 +437,7 @@ class Person priv (priv mut age: i32, name: str) {
 }
 ```
 
-### Field
+## Field
 
 ```kt
 class Person {
