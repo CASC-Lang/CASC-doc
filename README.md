@@ -45,6 +45,12 @@ java -jar <path to CASC compiler jar file> run [-o <output directory>] <source f
 * [Types](#types)
 * [Function](#function)
 * [Access Modifiers](#access-modifiers)
+* [Variable Declaration](#variable-declaration)
+* [Promotion](#promotion)
+* [Assignment](#assignment)
+* [Array](#array)
+* [Package](#package)
+* [Use](#use)
     
     </td>
     <td display=table-cell text-align=center>
@@ -255,4 +261,22 @@ Furthermore, you can skip declaring other sub-dimensional arrays with size, whic
 // new int[10][];
 ```
 
+## Package
 
+There's nothing special about package, it just works like Java:
+
+```java
+package your::package::here;
+```
+
+## Use
+
+`use` keyword is very similar to Java's import, but its syntax is much similar to Rust's:
+
+```rust
+use other::package::path
+use other::{ package, package::path }
+use other::pacakge::path as p
+```
+
+Notice that CASC doesn't support `companion use` at this moment, similar to Java's `static import`.
