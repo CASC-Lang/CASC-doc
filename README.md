@@ -32,7 +32,7 @@ java -jar <path to CASC compiler jar file> run [-o <output directory>] <source f
 
 ## Table Of Contents
 
-<table width=100%>
+<table style="width: 100%">
     <colgroup>
       <col style="width: 33%" />
       <col style="width: 33%" />
