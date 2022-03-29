@@ -218,4 +218,41 @@ a = b = 1
 b = a = 1
 ```
 
+## Array
+
+Array in CASC has different similarity aspects compared to Rust, C# or Java.
+
+Array type is very similar to Rust's, however since JVM doesn't force parameter array to have specific size, therefore,
+it's still kinda different from Rust's:
+
+```rust
+[str]     -> 1D string array
+[[str]]   -> 2D string array
+// and so on...
+```
+
+But array declaration / initialization has mixed style with Rust's, C#'s and Java's:
+
+```rust
+[i32; 10]{}       // Array declaration
+[i32; cap]{}      // Array declaration with varaible-determined size
+[;]{ 1, 2, 3 }    // Array initialization
+[i32;]{ 1, 2, 3 } // Array initialization with sepcifying array type
+```
+
+Notice that you must have the top dimension declare with a size, otherwise, CASC couldn't know how many array elements 
+allocate.
+
+```rust
+[i32;]{} // Err, missing dimension at the top dimension declaration
+```
+
+Furthermore, you can skip declaring other sub-dimensional arrays with size, which means this array will be a jagged array.
+
+```rust
+[[i32;];10]{}
+// Equivalent to Java's:
+// new int[10][];
+```
+
 
