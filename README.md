@@ -55,7 +55,10 @@ java -jar <path to CASC compiler jar file> run [-o <output directory>] <source f
     </td>
     <td display=table-cell text-align=center>
 
-    PlaceHolder
+* [Statements](#statements)
+* * [If-Else Statement](#if-else-statement)
+* * [Java-Style For Loop](#java-like-for-loop-statement)
+* [Expressions](#expressions)
 
     </td>
     <td display=table-cell text-align=center>
@@ -218,7 +221,7 @@ mut b := 2F // b stores f32 data: 2.0
 // Err, cannot assign a wider data type to narrow data type, (f32 -> i32)
 a = b = 1
 // the execution order is (b = 1) then (a = b), at first assignment, 1 has been promoted as f32, so at second assginment
-   it would fail.
+// it would fail.
 
 // Ok
 b = a = 1
@@ -280,3 +283,34 @@ use other::pacakge::path as p
 ```
 
 Notice that CASC doesn't support `companion use` at this moment, similar to Java's `static import`.
+
+## Statements
+
+### If-Else Statement
+
+(Notice that CASC also has [if-else expression](#if-else-expression))
+
+If-else statement allows you conditionally execute code through multiple branches:
+
+```rust
+if i > 1 {
+
+} else if i > 2 {
+
+} else {
+
+}
+```
+
+### Java-like For Loop Statement
+
+CASC supports Java-favored for loop, though the limitation is that you can only have 1 statement in pre- / post-init 
+section:
+
+```v
+for mut i := 0; i < 10; i++ {
+
+}
+```
+
+## Expressions
