@@ -1,6 +1,10 @@
 # CASC Lang Document  
 ## Introduction
 
+> Notice that this documentation is a very brief introduction to CASC programming language's syntax and several 
+> surface-level language \ specification, which expects that you have some experience with Rust's, Go's, V's,
+> Java's, or Kotlin's syntax.
+
 CASC is a programming language focus on concise syntaxes and enhancing language features from Java. It is mostly inspired by Rust / Go Lang / V Lang, and influenced by Kotlin. CASC features:
 - Fully interoperability to Java
 - Shorthand syntaxes
@@ -38,8 +42,8 @@ java -jar <path to CASC compiler jar file> run [-o <output directory>] <source f
       <col style="width: 33%" />
       <col style="width: 33%" />
     </colgroup>
-    <tr width=100%><td display=table-cell
-    text-align=center>
+<tr width=100%><td display=table-cell 
+text-align=center>
 
 * [Hello World](#hello-world)
 * [Types](#types)
@@ -51,23 +55,28 @@ java -jar <path to CASC compiler jar file> run [-o <output directory>] <source f
 * [Array](#array)
 * [Package](#package)
 * [Use](#use)
-    
-    </td>
-    <td display=table-cell text-align=center>
 
+</td>
+<td display=table-cell text-align=center>
+  
 * [Statements](#statements)
-* * [If-Else Statement](#if-else-statement)
-* * [Java-Style For Loop](#java-like-for-loop-statement)
+  * [If-Else Statement](#if-else-statement)
+  * [Java-Style For Loop](#java-like-for-loop-statement)
 * [Expressions](#expressions)
+  * [String Literal / Char Literal](#string-literal--char-literal)
+    * [Escapable Character](#escapable-characters)
+  * [Operators](#operators)
+  * [If-Else Expression](#if-else-expression)
+  * [Assignment Expression](#assignment-expression)
+  
+</td>
+<td display=table-cell text-align=center>
 
-    </td>
-    <td display=table-cell text-align=center>
+- PlaceHolder
 
-    PlaceHolder
-
-    </td>
+</td>
  
-    </tr>
+</tr>
 </table>
 
 ## Hello World
@@ -314,3 +323,61 @@ for mut i := 0; i < 10; i++ {
 ```
 
 ## Expressions
+
+### String Literal / Char Literal
+
+You can declare string literal with `""`:
+
+```rust
+"This is a string!"
+```
+
+Same for character literal (`''`):
+
+```rust
+'a'
+```
+
+To escape a character, put `\\` before the character you want to escape:
+
+```rust
+"\t\r"
+```
+
+#### Escapable characters
+
+The following list shows the possible escaping characters:
+
+| Escaped character | Name                     |
+|-------------------|--------------------------|
+| \t                | Tab                      |
+| \\                | Back slash               |
+| \r                | Carriage return          |
+| \n                | Newline                  |
+| \b                | Backward                 |
+| \u09AF            | 16-bit unicode character |
+
+### Operators
+
+Operators in CASC is as same as Java's, including their precedence, see 
+[Java's operator tutorial page](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html) for more information.
+
+### If-Else Expression
+
+If-else expression is very similar to Java's and C#'s conditional expression, or Rust's and V's if-else expression.
+If-Else expression works mostly like [If-Else Statement](#if-else-statement), except in most scenarios, it expects having
+an expression returns (or retain) value:
+
+```rust
+a := if i > 1 {
+    1
+} else {
+    2
+}
+```
+
+If-else expression will also perform [promotion](#promotion) if the value types at the end of branches is different.
+
+### Assignment expression
+
+See [Assignment](#assignment).
