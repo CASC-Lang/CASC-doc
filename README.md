@@ -133,8 +133,16 @@ fn add(a: i32, b: i32): i32 {
 To declare it as a companion function (same as static function in Java), simply declare like below:
 
 ```rust
-comp fn add(a: i32, b: i32): i32 {
+fn add(a: i32, b: i32): i32 {
     return a + b
+}
+```
+
+To declare it as a member function, you'll need to add keyword `self` before all the other parameters:
+
+```rust
+fn add(self, a: i32, b: i32): i32 {
+    return self.manipulateAddition(a, b)
 }
 ```
 
