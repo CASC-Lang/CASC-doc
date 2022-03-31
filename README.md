@@ -86,7 +86,7 @@ text-align=center>
 
 To get start with any languages, hello world is the best demonstration to show a language's features. The following code is CASC's basic Hello World application:
 
-```v
+```rust
 class CASC
 
 impl CASC {
