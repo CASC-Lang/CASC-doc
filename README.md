@@ -338,7 +338,7 @@ Same for character literal (`''`):
 'a'
 ```
 
-To escape a character, put `\\` before the character you want to escape:
+To escape a character, put `\` before the character you want to escape:
 
 ```rust
 "\t\r"
