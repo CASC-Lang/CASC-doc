@@ -65,6 +65,7 @@ text-align=center>
 * [Expressions](#expressions)
   * [String Literal / Char Literal](#string-literal--char-literal)
     * [Escapable Character](#escapable-characters)
+  * [Integer Literal / Float Literal](#integer-literal--float-literal)
   * [Operators](#operators)
   * [If-Else Expression](#if-else-expression)
   * [Assignment Expression](#assignment-expression)
@@ -357,10 +358,30 @@ The following list shows the possible escaping characters:
 | \b                | Backward                 |
 | \u09AF            | 16-bit unicode character |
 
+### Integer Literal / Float Literal
+
+```rust
+1       // Integer Literal
+2.0     // Float Literal
+```
+
+Besides, the normal literal, CASC also supports type annotated integer / float literal:
+
+```rust
+1B      // Integer Literal (i8)
+1S      // Integer Literal (i16)
+1I      // Integer Literal (i32)
+1L      // Integer Literal (i64)
+1F      // Float Literal (f32)
+1D      // Float Literal (f64) 
+```
+
 ### Operators
 
 Operators in CASC is as same as Java's, including their precedence, see 
 [Java's operator tutorial page](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html) for more information.
+
+> Yeah, I'm quite lazy here to list all operators :P, I'll list it later
 
 ### If-Else Expression
 
