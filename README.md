@@ -77,7 +77,13 @@ text-align=center>
 <td display=table-cell text-align=center>
 
 * [Class](#class)
+  * [Accessors & Mutability](#accessors--mutability)
   * [Fields](#fields)
+  * [Inheritance](#inheritance)
+* [Impl](#impl)
+  * [Function Declaration](#function-declaration)
+  * [Constructor Declaration](#constructor-declaration)
+  * [Inheritance (Class)](#inheritance-class)
 
 </td>
  
@@ -126,7 +132,9 @@ as a real type.
 
 ## Function
 
-Similar to Kotlin's (or V Lang) function, you declares a function like below:
+> To actually declare functions, you'll have to declare it in [Impl](#impl) block.
+
+Similar to Kotlin's (or V Lang) function, you declare a function like below:
 
 ```rust
 fn add(a: i32, b: i32): i32 {
@@ -440,6 +448,35 @@ new ClassName(/* parameters */)
 
 ## Class
 
+Class is just like struct from various languages, it's meant to hold data and various function. But unlike struct, class in 
+modern OOP languages have more extended functionalities, such as member functions.  
+To declare a class in CASC, you have two ways:
+
+- No scope
+```rust
+class ClassName
+```
+- With scope
+```rust
+class ClassName {
+
+}
+```
+
+Notice that `no scope` cannot be used while there's some field declarations, to declare fields, you'll have to use 
+`with scope`.
+
+### Accessors & Mutability
+
+Class could be applied with [access modifiers](#access-modifiers) and `mut` keyword:
+
+```rust
+pub mut class ClassName
+```
+
+`mut` keyword is used for inheritance situation: in CASC, all declarations are defaulted as non-mutable, in order to make
+child class able to [override](#override) class, you'll have to add `mut` keyword before `class` keyword.
+
 ### Fields
 
 CASC introduces a simple (or more neat) way to declare fields, inspired by V's (and Go's) field syntax:
@@ -478,3 +515,67 @@ class ClassName {
 
 Notice that you cannot wrap it more than one times or have more than one `comp` blocks, otherwise, compiler will panic about this.
 
+### Inheritance
+
+See [Inheritance (Class)](#inheritance-class)
+
+## Impl
+
+Impl, or implementation, is a workaround for Java's, or Kotlin's function organization issue, its syntax is inspired by Rust's,
+`impl` keyword can split owner functions and implemented interface function implementations, so you can straightforwardly know which functions
+belong to which interface. This also overhauls the tidiness of a class implementations.
+
+Same as [Class](#class), you have `no scope` and `with scope` options to declare an implementation block, the limitations are same.
+But implementation block is actually optional, you can declare a class without it.
+
+```rust
+impl ClassName {
+  
+}
+```
+
+### Function Declaration
+
+See [Function](#function) for more basics.
+
+Function declaration also accept [access modifiers](#access-modifiers) and `mut` keywords.
+
+### Constructor Declaration
+
+CASC introduce a concise way to declare a constructor:
+
+```rust
+new(/* parameters */) {
+
+}
+```
+
+The above example declares a constructor, notice that if your class inherit other class, you'll have to declare a constructor 
+with a `self` keyword to call parent class' constructor, and all the other constructors in same context should have `super` 
+keyword to call constructor with `self` keyword:
+
+```rust
+impl ClassName: ParentClass {
+    // This calls parent class' `new()`
+    new(): self() {
+
+    }
+
+    // This calls `new(): self()`
+    new(i: i32): super() {
+
+    }
+}
+```
+
+> See [Inheritance (Class)](#inheritance-class) for more information.
+
+### Inheritance (Class)
+
+Like other OOP languages, CASC has inheritance!
+
+```rust
+impl ClassName: ParentClass {
+
+}
+```
