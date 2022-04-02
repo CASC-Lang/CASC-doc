@@ -76,7 +76,8 @@ text-align=center>
 </td>
 <td display=table-cell text-align=center>
 
-- PlaceHolder
+* [Class](#class)
+  * [Fields](#fields)
 
 </td>
  
@@ -436,3 +437,44 @@ Same as Java's constructor expression (or invocation):
 ```java
 new ClassName(/* parameters */)
 ```
+
+## Class
+
+### Fields
+
+CASC introduces a simple (or more neat) way to declare fields, inspired by V's (and Go's) field syntax:
+
+```rust
+class ClassName {
+// start with empty accessors or `pub:`
+    pubFinalField: i32
+mut:
+// or `pub mut:`
+    pubMutableField: i32
+prot:
+    protFinalField: i32
+prot mut:
+    protMutableField: i32
+intl:
+    intlFinalField: i32
+intl mut:
+    intlMutableField: i32
+priv:
+    privFinalField: i32
+priv mut:
+    privMutableField: i32
+}
+```
+
+To declare a set of companion fields, wrap it in a `comp` block:
+
+```rust
+class ClassName {
+    comp {
+        // Your fields here
+    }
+}
+```
+
+Notice that you cannot wrap it more than one times or have more than one `comp` blocks, otherwise, compiler will panic about this.
+
