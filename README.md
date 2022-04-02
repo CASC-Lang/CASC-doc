@@ -66,6 +66,7 @@ text-align=center>
   * [String Literal / Char Literal](#string-literal--char-literal)
     * [Escapable Character](#escapable-characters)
   * [Integer Literal / Float Literal](#integer-literal--float-literal)
+  * [Null Literal](#null-literal)
   * [Operators](#operators)
   * [If-Else Expression](#if-else-expression)
   * [Assignment Expression](#assignment-expression)
@@ -382,6 +383,14 @@ Besides, the normal literal, CASC also supports type annotated integer / float l
 1L      // Integer Literal (i64)
 1F      // Float Literal (f32)
 1D      // Float Literal (f64) 
+```
+
+### Null Literal
+
+Yes, it represents `null`, nothing more than this.
+
+```java
+null
 ```
 
 ### Operators
