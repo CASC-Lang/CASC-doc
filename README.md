@@ -66,10 +66,12 @@ text-align=center>
   * [String Literal / Char Literal](#string-literal--char-literal)
     * [Escapable Character](#escapable-characters)
   * [Integer Literal / Float Literal](#integer-literal--float-literal)
+  * [Bool Literal](#bool-literal)
   * [Null Literal](#null-literal)
   * [Operators](#operators)
   * [If-Else Expression](#if-else-expression)
   * [Assignment Expression](#assignment-expression)
+  * [Constructor expression](#constructor-expression)
   
 </td>
 <td display=table-cell text-align=center>
@@ -385,9 +387,14 @@ Besides, the normal literal, CASC also supports type annotated integer / float l
 1D      // Float Literal (f64) 
 ```
 
-### Null Literal
+### Bool Literal
 
-Yes, it represents `null`, nothing more than this.
+```rust
+true
+false
+```
+
+### Null Literal
 
 ```java
 null
@@ -419,3 +426,13 @@ If-else expression will also perform [promotion](#promotion) if the value types 
 ### Assignment expression
 
 See [Assignment](#assignment).
+
+### Constructor expression
+
+> aka constructor invocation
+
+Same as Java's constructor expression (or invocation):
+
+```java
+new ClassName(/* parameters */)
+```
