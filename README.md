@@ -372,7 +372,7 @@ The following list shows the possible escaping characters:
 | Escaped character | Name                     |
 |-------------------|--------------------------|
 | \t                | Tab                      |
-| \\                | Back slash               |
+| \\\\              | Back slash               |
 | \r                | Carriage return          |
 | \n                | Newline                  |
 | \b                | Backward                 |
